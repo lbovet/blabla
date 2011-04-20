@@ -8,7 +8,9 @@ A new Java-compatible programming language
 Author: Laurent Bovet <laurent.bovet@windmaster.ch>
 
 License: Do whatever you want with this but mention the original authors.
- 
+
+Please participate. Write your comments as https://github.com/lbovet/blabla/issues[issue] of this project or fork it.
+
 == Features 
 
 * Mostly backwards-compatible with Java. Valid Java code is valid Blabla code! At least for the subset of features we really use (e.g. drop things like finalizers, generic wildcards)
