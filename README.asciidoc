@@ -201,6 +201,11 @@ The reverse is true (if no ambiguity)
  myMethod(t)
 ----
 
+Anonymous variable to "swallow" tuple element when unpacking (like in Go).
+
+-----
+ x, _ = target getPoint()
+-----
 === Generics
 
 Inference is also used with generics
