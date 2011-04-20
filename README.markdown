@@ -35,7 +35,8 @@ Features
 
 * Parentheses for statements are not mandatory
 
-`     if a==1 {
+`     
+     if a==1 {
        sys.println("hello")
      }
 
