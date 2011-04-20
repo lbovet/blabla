@@ -1,5 +1,5 @@
 == BLABLA ==
-A new Java-compatible programming language - version 1
+A new Java-compatible programming language
 Author: Laurent Bovet <laurent.bovet@windmaster.ch>
 License: Do whatever you want with this but mention the original authors.
 === Features ===
