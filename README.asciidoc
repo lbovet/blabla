@@ -1,5 +1,5 @@
-= BLABLA
- 
+BLABLA
+====== 
 A new Java-compatible programming language
 
 Author: Laurent Bovet <laurent.bovet@windmaster.ch>
