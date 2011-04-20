@@ -4,6 +4,7 @@ BLABLA
 == Title ==
 
 Hello hello
+[source,perl]
 ----
  // Example with genericity
  interface CallBack<T, R> {
