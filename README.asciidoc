@@ -117,7 +117,7 @@ Named parameters
 ----
  myMethod(string name, dept="main", country="CH", code=41) { ... }  // declaration
      
- myMethod(name:"myself", code:33, country:"FR")
+ myMethod(name:"myself", code:33, country:"FR") // call
 ----
 
 === Collections and Tuples
