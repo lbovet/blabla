@@ -2,7 +2,9 @@ BLABLA
 ======
  
  A new Java-compatible programming language - version 1
+
  Author: Laurent Bovet <laurent.bovet@windmaster.ch>
+
  License: Do whatever you want with this but mention the original authors.
  
 Features
@@ -27,9 +29,9 @@ Features
  - Default method on classes
  
 * short builtin namespaces, no semicolon mandatory
- 
+ `
      sys.println("Hello, world")
- 
+ `
 * Parentheses for statements are not mandatory
 
      if a==1 {
