@@ -4,8 +4,6 @@ BLABLA
 == Title ==
 
 Hello hello
-
-[source,java]
 ----
  // Example with genericity
  interface CallBack<T, R> {
@@ -29,3 +27,5 @@ Hello hello
  // call
  myMethod(CharSum())
 ----
+
+Voilà
