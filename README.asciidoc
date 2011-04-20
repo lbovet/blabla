@@ -1,0 +1,31 @@
+BLABLA
+======
+
+== Title ==
+
+Hello hello
+
+[source,java]
+----
+ // Example with genericity
+ interface CallBack<T, R> {
+  R default(T param)
+ }
+ 
+ class CharSum implements CallBack<string, int>{
+  default {  // Note that the default method signature is infered from the interface
+    sum = 0
+    for c : param.chars {
+      sum += c.int     
+    }
+  }
+ }
+
+ // declaration
+ myMethod(CallBack<string, int> callback) {
+  int value = callback("hello")  
+ }
+ 
+ // call
+ myMethod(CharSum())
+----
