@@ -1,4 +1,5 @@
-= BLABLA =
+BLABLA
+======
 
 A new Java-compatible programming language
 
