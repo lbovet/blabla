@@ -30,7 +30,8 @@ Features
  
 * short builtin namespaces, no semicolon mandatory
 
-`     sys.println("Hello, world")`
+`     sys.println("Hello, world")
+`
 
 * Parentheses for statements are not mandatory
 
@@ -40,35 +41,42 @@ Features
 
      while a < 4 {
        a--
-     }`
+     }
+`
  
 * No distinction object/primitive types. Builtin types and classes are lowercase.
  
-`    int a = 2`
+`    int a = 2
+`
  
 * All variables are nullable
 
-`    int a = null`
+`    int a = null
+`
  
 * Type inference initialization at declaration
  
-`    a = "a string"`
+`    a = "a string"
+`
 
 * String are comparable with "=="
 
 `    a = "a"
     b = a + "b"
-    b == "ab" // is true`
+    b == "ab" // is true
+`
 
 * Instanciation: "new" keyword is not mandatory
 
-`    a = MyClass()  `
+`    a = MyClass()  
+`
  
 * Methods: "void" keyword is not mandatory
 
 `    class A {
       myMethod(string s)
-    }`
+    }
+`
  
 * Constructors: parent constructors can be used without redefinition in sub-classes
 
@@ -79,37 +87,43 @@ Features
      
      class B extends A { .. }
      
-     b = B(true)`
+     b = B(true)
+`
 
 * Default values for parameters
 
 `     myMethod(string name, dept="main") { ... }  // declaration. Note that inference works also here,
                                                  // type of dept is deduced
      
-     myMethod("myself")  // call`
+     myMethod("myself")  // call
+`
 
 * Named parameters
 
  `    myMethod(string name, dept="main", country="CH", code=41) { ... }  // declaration
      
-     myMethod(name:"myself", code:33, country:"FR")`
+     myMethod(name:"myself", code:33, country:"FR")
+`
 
 * Usual collections as builtin type with quick literal initialization
 
 `     list<int> a = [1, 2, 3]
-     map<string, int> m = { "3": 1, "a": 3 }`
+     map<string, int> m = { "3": 1, "a": 3 }
+`
  
 * Array-like indexing of list and maps, "=" is defined as replacement operation
 
 `     sys.println(a[3])
-     m["a"] = 5`
+     m["a"] = 5
+`
  
 * Tuple builtin type, a fixed-length list with typed elements
 
 `     tuple<int, string> t = (3, "a")
 
      int i = (int)t[0] // array-like subscripting returns object reference (must be casted)
-     int i = t.0 // dot for static subscripting (allows only a literal integer) returns a typed reference`
+     int i = t.0 // dot for static subscripting (allows only a literal integer) returns a typed reference
+`
 
 * Named tuples, elements are named.
 
@@ -120,17 +134,20 @@ Features
      
      int i = t.a // dot for static subscripting
 
-     int i = t["a"] // Reflective subscripting`
+     int i = t["a"] // Reflective subscripting
+`
  
 * Methods can return multiple values
 
 `     string, int myMethod() { ... }
-     a, b = myMethod()`
+     a, b = myMethod()
+`
 
 * In fact the multiple returned value is a tuple, above statement is similar to
 
 `     tuple<string int> t = myMethod()
-     a, b = t  // unpacking of a tuple in separate variables`
+     a, b = t  // unpacking of a tuple in separate variables
+`
 
 * Thus, method can have named return values (requires parentheses)
 
@@ -138,20 +155,23 @@ Features
      
      if( a = myMethod() ).error == 0 {
          sys.println(a.value)
-     }`
+     }
+`
 
 * Packing of parameters into a tuple is automatic (if no ambiguity)
 
 `     myMethod(tuple<string, int> t) { ... } // declaration
 
-     myMethod("a", 3)  // call`
+     myMethod("a", 3)  // call
+`
 
 * The reverse is true (if no ambiguity)
 
 `     myMethod(string, int) { ... } // declaration
      
      tuple<string, int> t = "a", 2
-     myMethod(t)`
+     myMethod(t)
+`
 
 * Inference is also used with generics
 
@@ -159,7 +179,8 @@ Features
 
      c = LinkedList()       // the compiler knows that it has to instanciate a LinkedList<int>
 
-     l = list()             // defaults to a list of "object"`
+     l = list()             // defaults to a list of "object"
+`
 
 * Tuple packing/unpacking works also in generics, but you have to group the parameters in separate <...> blocks to
   allow multiple tuples and avoid ambiguous matching
@@ -172,7 +193,8 @@ Features
      // is actually the same as
      c = C<tuple<int i, string s>>()
 
-     sys.println(c.do().i)`
+     sys.println(c.do().i)
+`
 
 * Visibility: things are public by default. private, protected, package: same behaviour as in Java.
 
@@ -194,7 +216,8 @@ Features
 
      }
      
-     // Note: In "java compatibility mode", the compiler routes a.a to a.getA() and a.setA() automatically.`
+     // Note: In "java compatibility mode", the compiler routes a.a to a.getA() and a.setA() automatically.
+`
 
 * Objects can have a default method. This opens door to functional programming constructs.
 
@@ -218,18 +241,21 @@ Features
      }
      
      // call
-     myMethod(CharSum())`
+     myMethod(CharSum())
+`
  
 * Anonymous classes overriding the default method
 
 `     // call myMethod with a callback created on the fly
-     myMethod( CallBack() { default { return param.chars[0]  }} )    // Note that the generic parameters are infered by the method signature (when possible)`
+     myMethod( CallBack() { default { return param.chars[0]  }} )    // Note that the generic parameters are infered by the method signature (when possible)
+`
 
 * Syntactic sugar to write the same as above when 1) Using the default constructor 2) redefining only the default method
 
 `     // equivalents to above
      myMethod( CallBack():{ return param.chars[0] } )
-     myMethod( CallBack:{ return param.chars[0] } )`
+     myMethod( CallBack:{ return param.chars[0] } )
+`
 
 * Closures are realized by generalizing the concept with tuples and using a builtin interface named "lambda"
 
@@ -247,7 +273,8 @@ Features
      myMethod( lambda:{ return args.0*0.5, args.1 == "hello" } )
      
      // usage with map-like tuple
-     myMethod( lambda:{ return args.position*0.5, args.name == "hello" } )`
+     myMethod( lambda:{ return args.position*0.5, args.name == "hello" } )
+`
  
 * Resource management is solved the same way with a builtin class named "with" and an interface named "closable"
 
@@ -273,7 +300,8 @@ Features
      connection = datasource.connection
      with(connection):{
         // work...
-     }`
+     }
+`
  
 * Exceptions inheriting from "Exception" are no more checked exceptions. Methods must however declare them in throws clause.
 
@@ -282,7 +310,8 @@ Features
 `    import .-*      // This will disable the default language imports (builtin types, lambda, with, ...)
     import .lambda  // Selectively import a class from default language imports (You see that the namespace root of default language imports is "")
     import .-lambda  // Selectively hide a class from default language imports
-    import .*       // Valid but not necessary, done by default`
+    import .*       // Valid but not necessary, done by default
+`
 
 * Traits, à la Scala
 
@@ -298,7 +327,8 @@ Features
       boolean isSimilar(Employee employee) {
         return employee.name = this.name && employee.personalNo == this.personalNo
       }
-    }`
+    }
+`
 
 * Builtin class: synchronized queue. Useful for parallel programming
 
@@ -309,7 +339,8 @@ Features
     q.add(4)  // wait if bounded and full
     q.get()   // wait if empty
 
-    q.wait()  // wait until it is empty`
+    q.wait()  // wait until it is empty
+`
 
 * By value copy with transitive "const" keyword. Allows for concurrent processing without shared state.
 
@@ -331,7 +362,8 @@ Features
 
     a = const myObject   // It can also be used as operator
 
-    anotherMethod(const myParam)`
+    anotherMethod(const myParam)
+`
 
 * Builtin class: parallel. Binds sync and closure to parallelize code.
 
@@ -364,7 +396,8 @@ Features
           // ... treatment code applied on currentObject
        }
     }
-    s.wait()`
+    s.wait()
+`
 
 * Concurrency: other example for concurrent processing. Treating requests parallelly
 
@@ -377,4 +410,5 @@ Features
       parallel(s):{
           // ... Treat request
       }
-    }`
+    }
+`
