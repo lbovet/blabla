@@ -1,10 +1,12 @@
-== BLABLA ==
+= BLABLA
  
-* A new Java-compatible programming language
-* Author: Laurent Bovet <laurent.bovet@windmaster.ch>
-* License: Do whatever you want with this but mention the original authors.
+A new Java-compatible programming language
+
+Author: Laurent Bovet <laurent.bovet@windmaster.ch>
+
+License: Do whatever you want with this but mention the original authors.
  
-=== Features ===
+== Features 
 
 * Mostly backwards-compatible with Java. Valid Java code is valid Blabla code! At least for the subset of features we really use (e.g. drop things like finalizers, generic wildcards)
 * Object oriented
@@ -13,24 +15,26 @@
 * Implementable on JVM. Code can be translated to Java source code
 * Allows functional programming constructs (lambda) without making the function a first-class citizen
  
-=== Driving forces ===
+== Driving forces 
 * As simple, concise and practical as script langugage (ref Python)
 * For javaists. A progressive transition to modernity
  
-=== Key Concepts ===
+== Key Concepts
 * Type inference
 * A tuple type that can pack/unpack variable lists
 * Default method on classes
  
-=== Examples ===
+== Examples
+
+=== General and Syntax
  
-* short builtin namespaces, no semicolon mandatory
+short builtin namespaces, no semicolon mandatory
 
 ----
  sys.println("Hello, world")
 ----
 
-* Parentheses for statements are not mandatory
+Parentheses for statements are not mandatory
 
 ---- 
  if a==1 {
@@ -42,25 +46,25 @@
  }
 ----
  
-* No distinction object/primitive types. Builtin types and classes are lowercase.
+No distinction object/primitive types. Builtin types and classes are lowercase.
 
 ----
  int a = 2
 ----
  
-* All variables are nullable
+All variables are nullable
 
 ----
  int a = null
 ----
 
-* Type inference initialization at declaration
+Type inference initialization at declaration
 
 ---- 
  a = "a string"
 ----
 
-* String are comparable with "=="
+String are comparable with "=="
 
 ----
     a = "a"
@@ -68,13 +72,13 @@
     b == "ab" // is true
 ----
 
-* Instanciation: "new" keyword is not mandatory
+Instanciation: "new" keyword is not mandatory
 
 ----
  a = MyClass()  
 ----
  
-* Methods: "void" keyword is not mandatory
+Methods: "void" keyword is not mandatory
 
 ----
     class A {
@@ -82,7 +86,7 @@
     }
 ----
  
-* Constructors: parent constructors can be used without redefinition in sub-classes
+Constructors: parent constructors can be used without redefinition in sub-classes
 
 ----
   class A {
@@ -95,7 +99,9 @@
  b = B(true)
 ----
 
-* Default values for parameters
+=== Method Parameters
+
+Default values for parameters
 
 ----
  myMethod(string name, dept="main") { ... }  // declaration. Note that inference works also here,
@@ -103,7 +109,7 @@
  myMethod("myself")  // call
 ----
 
-* Named parameters
+Named parameters
 
 ----
  myMethod(string name, dept="main", country="CH", code=41) { ... }  // declaration
@@ -111,21 +117,23 @@
  myMethod(name:"myself", code:33, country:"FR")
 ----
 
-* Usual collections as builtin type with quick literal initialization
+=== Collections and Tuples
+
+Usual collections as builtin type with quick literal initialization
 
 ----
  list<int> a = [1, 2, 3]
  map<string, int> m = { "3": 1, "a": 3 }
 ----
 
-* Array-like indexing of list and maps, "=" is defined as replacement operation
+Array-like indexing of list and maps, "=" is defined as replacement operation
 
 ----
  sys.println(a[3])
  m["a"] = 5
 ----
 
-* Tuple builtin type, a fixed-length list with typed elements
+Tuple builtin type, a fixed-length list with typed elements
 
 ----
  tuple<int, string> t = (3, "a")
@@ -134,7 +142,7 @@
  int i = t.0 // dot for static subscripting (allows only a literal integer) returns a typed reference
 ----
 
-* Named tuples, elements are named.
+Named tuples, elements are named.
 
 ----
  tuple<int a, string b> t = (3, "a")
@@ -146,22 +154,24 @@
 
  int i = t["a"] // Reflective subscripting
 ----
+
+=== Multiple Return Value & Tuple packing/unpacking
  
-* Methods can return multiple values
+Methods can return multiple values
 
 ----
  string, int myMethod() { ... }
  a, b = myMethod()
 ----
 
-* In fact the multiple returned value is a tuple, above statement is similar to
+In fact the multiple returned value is a tuple, above statement is similar to
 
 ----
  tuple<string int> t = myMethod()
  a, b = t  // unpacking of a tuple in separate variables
 ----
 
-* Thus, method can have named return values (requires parentheses)
+Thus, method can have named return values (requires parentheses)
 
 ----
  string val, int error myMethod() { ... }
@@ -171,7 +181,7 @@
  }
 ----
 
-* Packing of parameters into a tuple is automatic (if no ambiguity)
+Packing of parameters into a tuple is automatic (if no ambiguity)
 
 ----
  myMethod(tuple<string, int> t) { ... } // declaration
@@ -179,7 +189,7 @@
  myMethod("a", 3)  // call
 ----
 
-* The reverse is true (if no ambiguity)
+The reverse is true (if no ambiguity)
 
 ----
  myMethod(string, int) { ... } // declaration
@@ -188,7 +198,9 @@
  myMethod(t)
 ----
 
-* Inference is also used with generics
+=== Generics
+
+Inference is also used with generics
 
 ----
  Collection<int> c
@@ -198,8 +210,7 @@
  l = list()             // defaults to a list of "object"
 ----
 
-* Tuple packing/unpacking works also in generics, but you have to group the parameters in separate <...> blocks to
-  allow multiple tuples and avoid ambiguous matching
+Tuple packing/unpacking works also in generics, but you have to group the parameters in separate <...> blocks to allow multiple tuples and avoid ambiguous matching
 
 ----
  class C<T> {
@@ -213,9 +224,11 @@
  sys.println(c.do().i)
 ----
 
-* Visibility: things are public by default. private, protected, package: same behaviour as in Java.
+=== Modifiers & Accessors
 
-* Properties. They are public fields with optional accessors.
+Visibility: things are public by default. private, protected, package: same behaviour as in Java.
+
+Properties. They are public fields with optional accessors.
 
 ----
  class A {
@@ -237,7 +250,9 @@
  // Note: In "java compatibility mode", the compiler routes a.a to a.getA() and a.setA() automatically.
 ----
 
-* Objects can have a default method. This opens door to functional programming constructs.
+=== Default Method, Lambda and With
+
+Objects can have a default method. This opens door to functional programming constructs.
 
 ----
  // Example with genericity
@@ -263,14 +278,14 @@
  myMethod(CharSum())
 ----
 
-* Anonymous classes overriding the default method
+Anonymous classes overriding the default method
 
 ----
  // call myMethod with a callback created on the fly
  myMethod( CallBack() { default { return param.chars[0]  }} )    // Note that the generic parameters are infered by the method signature (when possible)
 ----
 
-* Syntactic sugar to write the same as above when 1) Using the default constructor 2) redefining only the default method
+Syntactic sugar to write the same as above when 1) Using the default constructor 2) redefining only the default method
 
 ----
  // equivalents to above
@@ -278,7 +293,7 @@
  myMethod( CallBack:{ return param.chars[0] } )
 ----
 
-* Closures are realized by generalizing the above concept with tuples and using a builtin interface named "lambda"
+Closures are realized by generalizing the above concept with tuples and using a builtin interface named "lambda"
 
 ----
  // builtin lambda interface (lowercase because builtin)
@@ -298,7 +313,7 @@
  myMethod( lambda:{ return args.position*0.5, args.name == "hello" } )
 ----
  
-* Resource management is solved the same way with a builtin class named "with" and an interface named "closable"
+Resource management is solved the same way with a builtin class named "with" and an interface named "closable"
 
 ----
  // builtin "with" class
@@ -326,9 +341,11 @@
  }
 ----
  
-* Exceptions inheriting from "Exception" are no more checked exceptions. Methods must however declare them in throws clause.
+=== Exceptions, Import Exclusion
 
-* Hide default imports to allow copy paste of Java code containing blabla keywords
+Exceptions inheriting from "Exception" are no more checked exceptions. Methods must however declare them in throws clause.
+
+Hide default imports to allow copy paste of Java code containing blabla keywords
 
 ----
  import .-*      // This will disable the default language imports (builtin types, lambda, with, ...)
@@ -337,7 +354,9 @@
  import .*       // Valid but not necessary, done by default
 ----
 
-* Traits, à la Scala
+=== Traits
+
+Traits, à la Scala
 
 ----
  trait Similarity<T> {
@@ -355,7 +374,9 @@
  }
 ----
 
-* Builtin class: synchronized queue. Useful for parallel programming
+=== Concurrency & Parallel Programming
+
+Builtin class: synchronized queue. Useful for parallel programming
 
 ----
     q = sync<int>()  // unbounded
@@ -368,7 +389,7 @@
     q.wait()  // wait until it is empty
 ----
 
-* By value copy with transitive "const" keyword. Allows for concurrent processing without shared state.
+By value copy with transitive "const" keyword. Allows for concurrent processing without shared state.
 
 ----
     class MyImmutableObject {
@@ -392,7 +413,7 @@
     anotherMethod(const myParam)
 ----
 
-* Builtin class: parallel. Binds sync and closure to parallelize code.
+Builtin class: parallel. Binds sync and closure to parallelize code.
 
 ----
     // Code as it were implemented using java platform concurency tools
@@ -427,7 +448,7 @@
     s.wait()
 ----
 
-* Concurrency: other example for concurrent processing. Treating requests parallelly
+Concurrency: other example for concurrent processing. Treating requests parallelly
 
 ----
     requestQueue = sync<Request>(0)  // Queue receives the requests (another threads feeds it)
