@@ -279,7 +279,7 @@ Objects can have a default method. This opens door to functional programming con
 
  // declaration
  myMethod(CallBack<string, int> callback) {
-  int value = callback("hello")  
+  int value = callback("hello")        // calls the default method of the callback object
  }
 
  // call
