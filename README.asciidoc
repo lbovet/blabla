@@ -276,6 +276,7 @@ Objects can have a default method. This opens door to functional programming con
     for c : param.chars {
       sum += c.int     
     }
+    return sum
   }
  }
 
