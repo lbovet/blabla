@@ -352,6 +352,50 @@ Resource management is solved the same way with a builtin class named "with" and
  }
 ----
  
+=== For Loop
+
+The "for" statement works also on iterators, not only on collections.
+
+----
+Iterator<int> it = ..
+for i: it {
+   sys.println(i*3)
+}
+----
+
+List comprehension: builtin maplist class that extends a list applies the default method
+to all elements of the input list, including those added after creation.
+
+----
+numbers = [1, 2, 3 ]
+
+roots = maplist<int><float>(numbers):{ return Math.srqt(i) }   // roots is [ 1, 1.41.., 1.73...,]
+
+roots.clear()
+roots.add(4)   // roots is then [ 2 ]
+----
+
+For information, implementation of maplist could be:
+
+----
+class maplist<F><T> extends list<T> {
+  T default(F f) {
+   return t
+  }
+  
+  maplist(list<F> l) {
+  	for i : l
+  		super.add( default(i) 
+  }
+
+  add(T t) {
+  	super.add(default(i))
+  }
+
+  // ...
+}
+----
+ 
 === Exceptions, Import Exclusion
 
 Exceptions inheriting from "Exception" are no more checked exceptions. Methods must however declare them in throws clause.
